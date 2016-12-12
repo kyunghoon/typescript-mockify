@@ -29,19 +29,19 @@
   },
   "homepage": "https://github.com/brechtbilliet/typescript-mockify#readme",
   "devDependencies": {
-    "babel": "5.8.23",
+    "babel": "^5.8.23",
     "dts-bundle": "^0.3.0",
     "dts-generator": "^1.5.0",
     "fs": "0.0.2",
     "jasmine": "2.3.2",
-    "ts-loader": "0.5.5",
-    "tsd": "0.6.4",
-    "typescript": "1.6.2",
+    "ts-loader": "^1.3.2",
+    "tsd": "^0.6.4",
+    "typescript": "^2.1.4",
     "wallaby-webpack": "0.0.8",
-    "webpack": "1.12.2"
+    "webpack": "^1.12.2"
   },
   "dependencies": {
     "safe-mkdir": "^1.0.3",
-    "lodash": "3.10.1"
+    "lodash": "^3.10.1"
   }
 }

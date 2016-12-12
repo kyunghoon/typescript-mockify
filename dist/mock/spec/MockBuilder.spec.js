@@ -1,3 +1,4 @@
+"use strict";
 var Foo_1 = require("./testClass/Foo");
 var MockBuilder_1 = require("../MockBuilder");
 var ConstructorArguments_1 = require("../ConstructorArguments");

@@ -1,3 +1,4 @@
+"use strict";
 var StubbedFunc_1 = require("./StubbedFunc");
 var Mock = (function () {
     function Mock(instance, args) {
@@ -16,5 +17,5 @@ var Mock = (function () {
         return this;
     };
     return Mock;
-})();
+}());
 exports.Mock = Mock;

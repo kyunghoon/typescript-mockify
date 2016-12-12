@@ -1,3 +1,4 @@
+"use strict";
 var NoConstructor = (function () {
     function NoConstructor() {
         this.stringVal = "dummystrval";
@@ -14,5 +15,5 @@ var NoConstructor = (function () {
         return 10;
     };
     return NoConstructor;
-})();
+}());
 exports.NoConstructor = NoConstructor;

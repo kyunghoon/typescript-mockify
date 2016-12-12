@@ -1,3 +1,4 @@
+"use strict";
 var Foo = (function () {
     function Foo(stringVal, booleanVal, barVal) {
         this.barVal = barVal;
@@ -17,5 +18,5 @@ var Foo = (function () {
     Foo.prototype.quux = function (args) {
     };
     return Foo;
-})();
+}());
 exports.Foo = Foo;

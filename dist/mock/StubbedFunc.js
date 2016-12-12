@@ -1,3 +1,4 @@
+"use strict";
 var StubbedFunc = (function () {
     function StubbedFunc(func, mock) {
         this.func = func;
@@ -8,7 +9,7 @@ var StubbedFunc = (function () {
         return function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i - 0] = arguments[_i];
+                args[_i] = arguments[_i];
             }
             (_a = _this.func.and)[jasmineMethod].apply(_a, args);
             return _this.mock;
@@ -25,5 +26,5 @@ var StubbedFunc = (function () {
         return this.func;
     };
     return StubbedFunc;
-})();
+}());
 exports.StubbedFunc = StubbedFunc;

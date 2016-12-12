@@ -1,3 +1,4 @@
+"use strict";
 var ConstructorArguments = (function () {
     function ConstructorArguments() {
         this.arguments = {};
@@ -7,5 +8,5 @@ var ConstructorArguments = (function () {
         return this;
     };
     return ConstructorArguments;
-})();
+}());
 exports.ConstructorArguments = ConstructorArguments;

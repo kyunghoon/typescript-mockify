@@ -1,3 +1,4 @@
+"use strict";
 var Mock_1 = require("../Mock");
 var StubbedFunc_1 = require("../StubbedFunc");
 var NoConstructor_1 = require("./testClass/NoConstructor");

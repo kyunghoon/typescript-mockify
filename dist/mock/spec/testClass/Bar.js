@@ -1,3 +1,4 @@
+"use strict";
 var Bar = (function () {
     function Bar() {
     }
@@ -5,5 +6,5 @@ var Bar = (function () {
         return "just a string";
     };
     return Bar;
-})();
+}());
 exports.Bar = Bar;

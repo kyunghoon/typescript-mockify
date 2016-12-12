@@ -1,3 +1,4 @@
+"use strict";
 var BazParent = (function () {
     function BazParent(stringVal) {
         this.stringVal = stringVal;
@@ -12,5 +13,5 @@ var BazParent = (function () {
     BazParent.prototype.quux = function (args) {
     };
     return BazParent;
-})();
+}());
 exports.BazParent = BazParent;

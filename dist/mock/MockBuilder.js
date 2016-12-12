@@ -1,3 +1,4 @@
+"use strict";
 var Mock_1 = require("./Mock");
 var _ = require("lodash");
 var MockBuilder = (function () {
@@ -21,10 +22,17 @@ var MockBuilder = (function () {
                 }
             }
             return MockImplementation;
-        })();
+        }());
         MockImplementation.prototype = Object.create(Ctor.prototype);
         MockImplementation.prototype.constructor = MockImplementation;
         for (var prototypeKey in MockImplementation.prototype) {
+            var oldDescriptor = Object.getOwnPropertyDescriptor(MockImplementation.prototype, prototypeKey);
+            if (oldDescriptor.get || oldDescriptor.set) {
+                Object.defineProperty(MockImplementation.prototype, prototypeKey, {
+                    set: undefined,
+                    get: undefined
+                });
+            }
             MockImplementation.prototype[prototypeKey] = jasmine.createSpy(prototypeKey);
         }
         var instance = new MockImplementation(args ? _.toArray(args.arguments) : null);
@@ -56,5 +64,5 @@ var MockBuilder = (function () {
         }
     };
     return MockBuilder;
-})();
+}());
 exports.MockBuilder = MockBuilder;

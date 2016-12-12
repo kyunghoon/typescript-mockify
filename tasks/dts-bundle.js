@@ -1,5 +1,4 @@
-var dts = require('dts-generator');
-dts.generate({
+require('dts-generator').default(({
     name: 'typescript-mockify',
     baseDir: 'src',
     files: [
@@ -7,4 +6,4 @@ dts.generate({
     ],
     out: 'dist/typescript-mockify.d.ts',
     main: "typescript-mockify/index"
-});
+}));

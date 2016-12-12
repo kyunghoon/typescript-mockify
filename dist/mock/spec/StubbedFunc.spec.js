@@ -1,3 +1,4 @@
+"use strict";
 var _ = require("lodash");
 var StubbedFunc_1 = require("../StubbedFunc");
 var MockBuilder_1 = require("../MockBuilder");
