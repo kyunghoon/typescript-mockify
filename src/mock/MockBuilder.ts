@@ -40,11 +40,13 @@ export class MockBuilder<Interface> {
          * override all prototype methods by spies
          */
         for (let prototypeKey in MockImplementation.prototype) {
-            let oldDescriptor = Object.getOwnPropertyDescriptor(MockImplementation.prototype, prototypeKey);
-            if(oldDescriptor.get || oldDescriptor.set) {
-                Object.defineProperty(MockImplementation.prototype, prototypeKey, {
-                    set: undefined,
-                    get: undefined
+            let oldDescriptor = Object.getOwnPropertyDescriptor(Ctor.prototype, prototypeKey);
+            if(oldDescriptor && (oldDescriptor.get || oldDescriptor.set)) {
+                Object.defineProperty(Ctor.prototype, prototypeKey, {
+                    enumerable: true,
+                    configurable: true,
+                    writable: true,
+                    value: undefined
                 });
             }
             MockImplementation.prototype[prototypeKey] = jasmine.createSpy(prototypeKey);

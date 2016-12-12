@@ -1,5 +1,6 @@
 import Spy = jasmine.Spy;
 import {Foo} from "./testClass/Foo";
+import {GettersAndSetters} from "./testClass/GettersAndSetters";
 import {Mock} from "../Mock";
 import {IFoo} from "./testClass/IFoo";
 import {MockBuilder} from "../MockBuilder";
@@ -360,8 +361,8 @@ describe("MockBuilder: original context sanity check", () => {
         expect(bar1.bar()).toBe("just a string");
 
         const barMock: Mock<IBar> = new MockBuilder<IBar>()
-            .createInstance(Bar)
-            .setupMethod("bar").andReturn("spied!");
+					.createInstance(Bar)
+					.setupMethod("bar").andReturn("spied!");
 
         expect(barMock.instance.bar()).toBe("spied!");
 
@@ -369,3 +370,21 @@ describe("MockBuilder: original context sanity check", () => {
         expect(bar2.bar()).toBe("just a string");
     });
 });
+
+describe("MockBuilder: for classes containing getters and setters", () => {
+    it("can create a mock", () => {
+        const gettersAndSetters: GettersAndSetters = new GettersAndSetters();
+        gettersAndSetters.prop1 = "just a string";
+        expect(gettersAndSetters.prop1).toBe("just a string");
+
+        const gettersAndSettersMock: Mock<GettersAndSetters> = new MockBuilder<GettersAndSetters>().createInstance(GettersAndSetters)
+					.mapProperty('prop0','somevalue0')
+          .mapProperty('prop1','somevalue1');
+        expect(gettersAndSettersMock.instance.prop0).toEqual('somevalue0');
+        expect(gettersAndSettersMock.instance.prop1).toEqual('somevalue1');
+
+        const gettersAndSetters2: GettersAndSetters = new GettersAndSetters();
+        gettersAndSetters2.prop1 = "just a string";
+        expect(gettersAndSetters2.prop1).toBe("just a string");
+    });
+})

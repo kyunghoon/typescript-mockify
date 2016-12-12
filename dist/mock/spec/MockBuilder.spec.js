@@ -1,5 +1,6 @@
 "use strict";
 var Foo_1 = require("./testClass/Foo");
+var GettersAndSetters_1 = require("./testClass/GettersAndSetters");
 var MockBuilder_1 = require("../MockBuilder");
 var ConstructorArguments_1 = require("../ConstructorArguments");
 var Bar_1 = require("./testClass/Bar");
@@ -335,5 +336,20 @@ describe("MockBuilder: original context sanity check", function () {
         expect(barMock.instance.bar()).toBe("spied!");
         var bar2 = new Bar_1.Bar();
         expect(bar2.bar()).toBe("just a string");
+    });
+});
+describe("MockBuilder: for classes containing getters and setters", function () {
+    it("can create a mock", function () {
+        var gettersAndSetters = new GettersAndSetters_1.GettersAndSetters();
+        gettersAndSetters.prop1 = "just a string";
+        expect(gettersAndSetters.prop1).toBe("just a string");
+        var gettersAndSettersMock = new MockBuilder_1.MockBuilder().createInstance(GettersAndSetters_1.GettersAndSetters)
+            .mapProperty('prop0', 'somevalue0')
+            .mapProperty('prop1', 'somevalue1');
+        expect(gettersAndSettersMock.instance.prop0).toEqual('somevalue0');
+        expect(gettersAndSettersMock.instance.prop1).toEqual('somevalue1');
+        var gettersAndSetters2 = new GettersAndSetters_1.GettersAndSetters();
+        gettersAndSetters2.prop1 = "just a string";
+        expect(gettersAndSetters2.prop1).toBe("just a string");
     });
 });

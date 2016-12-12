@@ -26,11 +26,13 @@ var MockBuilder = (function () {
         MockImplementation.prototype = Object.create(Ctor.prototype);
         MockImplementation.prototype.constructor = MockImplementation;
         for (var prototypeKey in MockImplementation.prototype) {
-            var oldDescriptor = Object.getOwnPropertyDescriptor(MockImplementation.prototype, prototypeKey);
-            if (oldDescriptor.get || oldDescriptor.set) {
-                Object.defineProperty(MockImplementation.prototype, prototypeKey, {
-                    set: undefined,
-                    get: undefined
+            var oldDescriptor = Object.getOwnPropertyDescriptor(Ctor.prototype, prototypeKey);
+            if (oldDescriptor && (oldDescriptor.get || oldDescriptor.set)) {
+                Object.defineProperty(Ctor.prototype, prototypeKey, {
+                    enumerable: true,
+                    configurable: true,
+                    writable: true,
+                    value: undefined
                 });
             }
             MockImplementation.prototype[prototypeKey] = jasmine.createSpy(prototypeKey);
