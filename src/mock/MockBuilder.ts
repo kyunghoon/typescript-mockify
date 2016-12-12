@@ -40,6 +40,10 @@ export class MockBuilder<Interface> {
          * override all prototype methods by spies
          */
         for (let prototypeKey in MockImplementation.prototype) {
+            Object.defineProperty(MockImplementation.prototype, prototypeKey, {
+                set: undefined,
+                get: undefined
+            });
             MockImplementation.prototype[prototypeKey] = jasmine.createSpy(prototypeKey);
         }
 
