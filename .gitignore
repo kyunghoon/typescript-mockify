@@ -3,4 +3,3 @@ typings
 npm-debug.log
 .idea
 src/*.js
-dist/typescript-mockify.d.ts
