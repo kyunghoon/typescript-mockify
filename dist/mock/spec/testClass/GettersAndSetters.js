@@ -13,7 +13,7 @@ var ParentGettersAndSetters = (function () {
         },
         set: function (v) {
             if (typeof v === 'function') {
-                throw new Error('Trying to set jasmine spy');
+                throw new Error('Trying to set jasmine spy of Parent');
             }
             this._prop0 = v;
         },

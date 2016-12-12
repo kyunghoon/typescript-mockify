@@ -5,7 +5,7 @@ class ParentGettersAndSetters {
 	}
 	set prop0(v: string) {
 		if(typeof v === 'function') {
-			throw new Error('Trying to set jasmine spy');
+			throw new Error('Trying to set jasmine spy of Parent');
 		}
 		this._prop0 = v;
 	}
