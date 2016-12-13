@@ -371,7 +371,7 @@ describe("MockBuilder: original context sanity check", () => {
     });
 });
 
-describe("MockBuilder: for classes containing getters and setters", () => {
+fdescribe("MockBuilder: for classes containing getters and setters", () => {
     it("can create a mock", () => {
         const gettersAndSetters: GettersAndSetters = new GettersAndSetters();
         gettersAndSetters.prop1 = "just a string";

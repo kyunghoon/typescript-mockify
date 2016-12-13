@@ -26,20 +26,31 @@ var MockBuilder = (function () {
         MockImplementation.prototype = Object.create(Ctor.prototype);
         MockImplementation.prototype.constructor = MockImplementation;
         for (var prototypeKey in MockImplementation.prototype) {
-            var oldDescriptor = Object.getOwnPropertyDescriptor(Ctor.prototype, prototypeKey);
-            if (oldDescriptor && (oldDescriptor.get || oldDescriptor.set)) {
-                Object.defineProperty(Ctor.prototype, prototypeKey, {
-                    enumerable: true,
-                    configurable: true,
-                    writable: true,
-                    value: undefined
-                });
-            }
+            this.mockGetterAndSetter(Ctor.prototype, prototypeKey);
             MockImplementation.prototype[prototypeKey] = jasmine.createSpy(prototypeKey);
         }
         var instance = new MockImplementation(args ? _.toArray(args.arguments) : null);
         MockBuilder.setDefaultVals(instance, args);
         return instance;
+    };
+    MockBuilder.prototype.mockGetterAndSetter = function (classPrototype, prototypeKey) {
+        var oldDescriptor = Object.getOwnPropertyDescriptor(classPrototype, prototypeKey);
+        if (oldDescriptor && (oldDescriptor.get || oldDescriptor.set)) {
+            Object.defineProperty(classPrototype, prototypeKey, {
+                enumerable: true,
+                configurable: true,
+                writable: true,
+                value: undefined
+            });
+        }
+        console.log(classPrototype);
+        console.log(classPrototype.constructor.toString().substr(0, 50));
+        console.log(classPrototype.constructor.prototype);
+        console.log('------------');
+        if (classPrototype.constructor && classPrototype !== classPrototype.constructor.prototype) {
+            console.log('aaaaaaa');
+            this.mockGetterAndSetter(classPrototype.constructor.prototype, prototypeKey);
+        }
     };
     MockBuilder.setDefaultVals = function (object, args) {
         _.each(object, function (value, key) {

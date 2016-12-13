@@ -338,7 +338,7 @@ describe("MockBuilder: original context sanity check", function () {
         expect(bar2.bar()).toBe("just a string");
     });
 });
-describe("MockBuilder: for classes containing getters and setters", function () {
+fdescribe("MockBuilder: for classes containing getters and setters", function () {
     it("can create a mock", function () {
         var gettersAndSetters = new GettersAndSetters_1.GettersAndSetters();
         gettersAndSetters.prop1 = "just a string";

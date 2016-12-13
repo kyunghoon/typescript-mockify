@@ -35,20 +35,11 @@ export class MockBuilder<Interface> {
          */
         MockImplementation.prototype = Object.create(Ctor.prototype);
         MockImplementation.prototype.constructor = MockImplementation;
-
         /**
          * override all prototype methods by spies
          */
         for (let prototypeKey in MockImplementation.prototype) {
-            let oldDescriptor = Object.getOwnPropertyDescriptor(Ctor.prototype, prototypeKey);
-            if(oldDescriptor && (oldDescriptor.get || oldDescriptor.set)) {
-                Object.defineProperty(Ctor.prototype, prototypeKey, {
-                    enumerable: true,
-                    configurable: true,
-                    writable: true,
-                    value: undefined
-                });
-            }
+            this.mockGetterAndSetter(Ctor.prototype,prototypeKey);
             MockImplementation.prototype[prototypeKey] = jasmine.createSpy(prototypeKey);
         }
 
@@ -64,7 +55,25 @@ export class MockBuilder<Interface> {
 
         return instance;
     }
-
+    private mockGetterAndSetter(classPrototype: Object, prototypeKey: string) {
+        let oldDescriptor = Object.getOwnPropertyDescriptor(classPrototype, prototypeKey);
+        if(oldDescriptor && (oldDescriptor.get || oldDescriptor.set)) {
+            Object.defineProperty(classPrototype, prototypeKey, {
+                enumerable: true,
+                configurable: true,
+                writable: true,
+                value: undefined
+            });
+        }
+        console.log(classPrototype);
+        console.log(classPrototype.constructor.toString().substr(0,50));
+        console.log(classPrototype.constructor.prototype);
+        console.log('------------');
+        if(classPrototype.constructor && classPrototype !== classPrototype.constructor.prototype) {
+            console.log('aaaaaaa');
+            this.mockGetterAndSetter(classPrototype.constructor.prototype, prototypeKey)
+        }
+    }
     private static setDefaultVals(object: Object, args: ConstructorArguments): void {
         _.each(object, (value: any, key: string) => {
             if (!_.isFunction(value) && !MockBuilder.argsHasProperty(args, key)) {

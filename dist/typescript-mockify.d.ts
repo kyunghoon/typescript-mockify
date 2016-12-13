@@ -42,6 +42,7 @@ declare module 'typescript-mockify/mock/MockBuilder' {
 	    withCallConstructor(callConstructor: boolean): MockBuilder<Interface>;
 	    createInstance(Ctor: any, args?: ConstructorArguments): Mock<Interface>;
 	    private createMockInstance(Ctor, args);
+	    private mockGetterAndSetter(classPrototype, prototypeKey);
 	    private static setDefaultVals(object, args);
 	    private static argsHasProperty(args, key);
 	    private static createDefaultValue(type);
