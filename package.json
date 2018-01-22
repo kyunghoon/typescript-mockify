@@ -9,7 +9,7 @@
     "build": "tsc",
     "postbuild": "npm run dts-bundle",
     "prepublish": "npm run build",
-    "postinstall": "node tasks/create-typings-folder && cp dist/typescript-mockify.d.ts ../../typings/typescript-mockify.d.ts"
+    "postinstall": "node tasks/create-typings-folder && cp dist/typescript-mockify.d.ts ../../src/types/typescript-mockify.d.ts"
   },
   "typescript": {
     "definition": "dist/typescript-mockify.d.ts"
